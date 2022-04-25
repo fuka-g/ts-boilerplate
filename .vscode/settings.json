@@ -1,0 +1,49 @@
+{
+  "actionButtons": {
+    "defaultColor": "#ffffff",
+    "loadNpmCommands": false,
+    //"reloadButton": null,
+    "commands": [
+      {
+        "name": "💎 TSC",
+        "command": "npm run tsc",
+        "singleInstance": true
+      },
+      {
+        "name": "🟢 Start", // 🛑
+        "command": "npm run start",
+        "singleInstance": true
+      },
+      {
+        "name": "🚀 Build Dev",
+        "command": "npm run build-tool dev && npm run build",
+        "singleInstance": true
+      },
+      {
+        "name": "🚀 Build Release",
+        "command": "npm run build-tool build && npm run build",
+        "singleInstance": true
+      },
+      {
+        "name": "🎀 Lint",
+        "command": "npm run lint",
+        "singleInstance": true
+      },
+      {
+        "name": "✅ Test",
+        "command": "npm run test",
+        "singleInstance": true
+      },
+      {
+        "name": "⚙️ Build",
+        "command": "npm run build",
+        "singleInstance": true
+      },
+      {
+        "name": "💎 Build Tool",
+        "command": "npm run build-tool",
+        "singleInstance": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "ts-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build-tool-out/main.js",
+  "scripts": {
+    "start": "npm run build-tool && node .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx pkg . && node scripts/postbuild/main.js",
+    "tsc": "tsc",
+    "build-tool": "node scripts/build-tool/main.js",
+    "lint": "npx eslint src/main.ts"
+  },
+  "buildConfig": {
+    "src": "build-ts/",
+    "dest": "build-tool-out/",
+    "obfuscate": false,
+    "parameters": [
+      "dev"
+    ],
+    "obfuscationParameters": {
+      "compact": false,
+      "controlFlowFlattening": true,
+      "controlFlowFlatteningThreshold": 1,
+      "numbersToExpressions": true,
+      "simplify": true,
+      "stringArrayShuffle": true,
+      "splitStrings": true,
+      "stringArrayThreshold": 1
+    }
+  },
+  "pkg": {
+    "scripts": "build-tool-out/**/*.js",
+    "assets": "",
+    "targets": [ "latest-linux-x64", "latest-win-x64", "latest-macos-x64" ],
+    "outputPath": "dist"
+  },
+  "bin": "build-tool-out/main.js",
+  "type": "module",
+  "author": "fuka-g",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.26",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "eslint": "^8.14.0",
+    "fs-extra": "^10.1.0",
+    "javascript-obfuscator": "^4.0.0",
+    "readdirp": "^3.6.0"
+  }
+}

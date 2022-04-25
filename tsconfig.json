@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "moduleResolution": "node",
+        "target": "ESNEXT",
+        "rootDir": "src",
+        "outDir": "build-ts",
+        "watch": true,
+        "allowSyntheticDefaultImports": true
+    }
+}
