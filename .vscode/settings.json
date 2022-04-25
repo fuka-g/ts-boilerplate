@@ -16,12 +16,12 @@
       },
       {
         "name": "🚀 Build Dev",
-        "command": "npm run build-tool dev && npm run build",
+        "command": "npm run build-dev",
         "singleInstance": true
       },
       {
         "name": "🚀 Build Release",
-        "command": "npm run build-tool build && npm run build",
+        "command": "npm run build-release",
         "singleInstance": true
       },
       {
@@ -35,13 +35,8 @@
         "singleInstance": true
       },
       {
-        "name": "⚙️ Build",
+        "name": "⚙️ Build using defaults",
         "command": "npm run build",
-        "singleInstance": true
-      },
-      {
-        "name": "💎 Build Tool",
-        "command": "npm run build-tool",
         "singleInstance": true
       }
     ]
