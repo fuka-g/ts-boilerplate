@@ -11,6 +11,7 @@
     "package": "npx pkg . && node scripts/postbuild/main.js",
     "lint": "npx eslint src/main.ts",
     "start": "npm run build-tool && node .",
+    "start-release": "npm run build-tool build && node .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc"
   },

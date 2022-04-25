@@ -34,6 +34,10 @@ Calls ESLint
 
 Runs `build-tool` and runs the built script.
 
+### start-release
+
+Runs `build-tool` with only the flag `build` and runs the built script.
+
 ### test
 
 Calls the test suite.
