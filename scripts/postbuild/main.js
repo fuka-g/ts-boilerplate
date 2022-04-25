@@ -1,7 +1,7 @@
 import fse from "fs-extra";
 import fs from "fs";
 
-let packageJson = JSON.parse(fse.readFileSync("./package.json"));
+const packageJson = JSON.parse(fse.readFileSync("./package.json"));
 
 if (fs.existsSync(`dist/${packageJson.name}-linux`)) {
 	fse.moveSync(`dist/${packageJson.name}-linux`, `dist/${packageJson.name}-${packageJson.version}-linux`, { overwrite: true });
