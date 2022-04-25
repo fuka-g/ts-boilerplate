@@ -7,15 +7,15 @@ import JavaScriptObfuscator from "javascript-obfuscator";
  */
 function compileFile(basename, path, destination, parameters, obfuscate, obfuscationParameters) {
 	// Reads the file's content
-	let mainFile = fse.readFileSync(path).toString().split("\n");
+	const mainFile = fse.readFileSync(path).toString().split("\n");
 	// The final script that will be written to the destination folder
-	let builtFile = [];
+	const builtFile = [];
 	// List all instances of //# define
-	let defineArray = [];
+	const defineArray = [];
 	// List all active filters (//# if's)
-	let activeFiltersArray = [];
+	const activeFiltersArray = [];
 	// Values array (true if the key is in the array)
-	let filtersValueArray = [];
+	const filtersValueArray = [];
 	if (parameters) {
 		parameters.forEach(element => {
 			filtersValueArray.push(element);
@@ -23,37 +23,45 @@ function compileFile(basename, path, destination, parameters, obfuscate, obfusca
 	}
 	for (const line in mainFile) {
 		// Trims the line so there are no leading spaces or tabs
-		let trimmedLine = mainFile[line].trim();
+		const trimmedLine = mainFile[line].trim();
 		// If the line starts with the default prefix (//#)
 		// We start parsing it and try to see what we want to do
 		if (trimmedLine.startsWith("//#")) {
 			// Arguments are separated by spaces
-			let lineArguments = trimmedLine.replace("//#", "").trim().split(" ");
-			let command = trimmedLine.substring(3, trimmedLine.length).trim();
+			const lineArguments = trimmedLine.replace("//#", "").trim().split(" ");
+			const command = trimmedLine.substring(3, trimmedLine.length).trim();
 			if (command.startsWith("define") || command.startsWith("define") ||
 				command.startsWith("def") || command.startsWith("def")) {
-				// command: "define  DEFINE_2 How_are_you_?"
-				// firstCommandArgument: DEFINE_2
-				let firstCommandArgument = command.substring(command.indexOf(" "), command.length).trim();
-				// secondCommandArgument: How_are_you_?
-				let secondCommandArgument = firstCommandArgument.substring(firstCommandArgument.indexOf(" "), firstCommandArgument.length).trim();
-				firstCommandArgument = firstCommandArgument.substring(0, firstCommandArgument.indexOf(" ")).trim();
-				// If the arguments are set
-				if (firstCommandArgument && firstCommandArgument) {
-					let indexOfExistingDefine = defineArray.indexOf(firstCommandArgument);
-					if (indexOfExistingDefine !== -1 && !(indexOfExistingDefine % 2)) {
-						defineArray.splice(indexOfExistingDefine, 2);
+				let ignoreDefine = false;
+				for (const i in activeFiltersArray) {
+					if (filtersValueArray.indexOf(activeFiltersArray[i]) === -1) {
+						ignoreDefine = true;
 					}
-					// Push the arguments in defineArray
-					defineArray.push(firstCommandArgument);
-					defineArray.push(secondCommandArgument);
+				}
+				if (!ignoreDefine) {
+					// command: "define  DEFINE_2 How_are_you_?"
+					// firstCommandArgument: DEFINE_2
+					let firstCommandArgument = command.substring(command.indexOf(" "), command.length).trim();
+					// secondCommandArgument: How_are_you_?
+					const secondCommandArgument = firstCommandArgument.substring(firstCommandArgument.indexOf(" "), firstCommandArgument.length).trim();
+					firstCommandArgument = firstCommandArgument.substring(0, firstCommandArgument.indexOf(" ")).trim();
+					// If the arguments are set
+					if (firstCommandArgument && firstCommandArgument) {
+						const indexOfExistingDefine = defineArray.indexOf(firstCommandArgument);
+						if (indexOfExistingDefine !== -1 && !(indexOfExistingDefine % 2)) {
+							defineArray.splice(indexOfExistingDefine, 2);
+						}
+						// Push the arguments in defineArray
+						defineArray.push(firstCommandArgument);
+						defineArray.push(secondCommandArgument);
+					}
 				}
 			}
 			if (command.startsWith("if") || command.startsWith("if")) {
 				// Remove the if in the first element of the array
 				lineArguments.shift();
 				// Get the length of the array
-				let lineArgumentsLength = lineArguments.length;
+				const lineArgumentsLength = lineArguments.length;
 				// If the argument isn't already in the filter array
 				if (activeFiltersArray.indexOf(lineArguments[lineArgumentsLength]) === -1) {
 					// Push it to it
@@ -64,7 +72,7 @@ function compileFile(basename, path, destination, parameters, obfuscate, obfusca
 				// If there is an argument after endif (//#endif dev)
 				if (lineArguments[1]) {
 					//Get it's index in the active filter array
-					let indexOfFilter = activeFiltersArray.indexOf(lineArguments[1]);
+					const indexOfFilter = activeFiltersArray.indexOf(lineArguments[1]);
 					// If it's in the array
 					if (indexOfFilter !== -1) {
 						// Remove it
@@ -80,9 +88,9 @@ function compileFile(basename, path, destination, parameters, obfuscate, obfusca
 		else {
 			if (trimmedLine !== "") {
 				// Apply //# define's
-				for (let i in defineArray) {
+				for (const i in defineArray) {
 					// parseInt because for some reason i is a string
-					let arrayIndex = parseInt(i);
+					const arrayIndex = parseInt(i);
 					// defineArray is alternating key and values
 					// Only triggers when we're on a key
 					if (!(arrayIndex % 2)) {
@@ -109,7 +117,7 @@ function compileFile(basename, path, destination, parameters, obfuscate, obfusca
 	}
 	let builtFileString = builtFile.join("\n");
 	if (obfuscate) {
-		var obfResult = JavaScriptObfuscator.obfuscate(builtFileString, obfuscationParameters);
+		const obfResult = JavaScriptObfuscator.obfuscate(builtFileString, obfuscationParameters);
 		builtFileString = obfResult.getObfuscatedCode();
 	}
 	fse.writeFileSync(destination + "/" + basename, builtFileString);
@@ -120,7 +128,7 @@ function compileFile(basename, path, destination, parameters, obfuscate, obfusca
  * @param root The source root folder
  */
 export function main(parameters) {
-	let config = JSON.parse(fse.readFileSync("./package.json")).buildConfig;
+	const config = JSON.parse(fse.readFileSync("./package.json")).buildConfig;
 	let obfuscate = false;
 	fse.ensureDirSync(config.src);
 	fse.ensureDirSync(config.dest);
@@ -160,14 +168,11 @@ export function main(parameters) {
 			// Recursively read source folder
 			readdirp(config.src, { fileFilter: "*.js", alwaysStat: false })
 				.on("data", (entry) => {
-					// Send the file to compileFile()
-					compileFile(entry.basename, entry.fullPath, config.dest, parameters, obfuscate, config.obfuscationParameters);
-				})
+				// Send the file to compileFile()
+				compileFile(entry.basename, entry.fullPath, config.dest, parameters, obfuscate, config.obfuscationParameters);
+			})
 				.on("warn", error => console.error("non-fatal error", error))
 				.on("error", error => console.error("fatal error", error));
-			//.on("end", () => {
-				
-			//});
 		}
 		else {
 			throw new Error("No destination specified. Add buildConfig.dest in package.json");
@@ -177,7 +182,7 @@ export function main(parameters) {
 		throw new Error("No source specified. Add buildConfig.src in package.json");
 	}
 }
-let procargs = process.argv;
+const procargs = process.argv;
 for (let i = 0; i < 2; i++) {
 	procargs.shift();
 }
