@@ -4,12 +4,12 @@
   "description": "",
   "main": "build-tool-out/main.js",
   "scripts": {
+    "build": "npx pkg . && node scripts/postbuild/main.js",
+    "build-tool": "node scripts/build-tool/main.js",
+    "lint": "npx eslint src/main.ts",
     "start": "npm run build-tool && node .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx pkg . && node scripts/postbuild/main.js",
-    "tsc": "tsc",
-    "build-tool": "node scripts/build-tool/main.js",
-    "lint": "npx eslint src/main.ts"
+    "tsc": "tsc"
   },
   "buildConfig": {
     "src": "build-ts/",
