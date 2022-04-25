@@ -168,9 +168,9 @@ export function main(parameters) {
 			// Recursively read source folder
 			readdirp(config.src, { fileFilter: "*.js", alwaysStat: false })
 				.on("data", (entry) => {
-				// Send the file to compileFile()
-				compileFile(entry.basename, entry.fullPath, config.dest, parameters, obfuscate, config.obfuscationParameters);
-			})
+					// Send the file to compileFile()
+					compileFile(entry.basename, entry.fullPath, config.dest, parameters, obfuscate, config.obfuscationParameters);
+				})
 				.on("warn", error => console.error("non-fatal error", error))
 				.on("error", error => console.error("fatal error", error));
 		}
