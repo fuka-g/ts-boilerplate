@@ -1,0 +1,3 @@
+build-tool-out/**/*.js
+build-ts/**/*.js
+scripts/**/*.js
