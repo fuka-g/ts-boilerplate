@@ -4,7 +4,7 @@ Boilerplate project including a custom-made preprocessor (`fuka-g/build-tool`), 
 
 **Projects are currently limited to CJS due to `pkg`'s limitations ([Issue](https://github.com/vercel/pkg/issues/1291) | [PR](https://github.com/vercel/pkg/pull/1323))**
 
-## Scripts
+## NPM Scripts
 
 ### build
 
@@ -45,3 +45,17 @@ Calls the test suite.
 ### tsc
 
 Summons the TypeScript daemon.
+
+## Scripts
+
+### build-tool
+
+See `fuka-g/build-tool`
+
+### postbuild
+
+Renames the built packages to include the version (maybe more in the future).
+
+### prerun
+
+Used to carry assets from the dev environment to the production environment.
