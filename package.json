@@ -8,7 +8,7 @@
     "build-dev": "node scripts/build-tool/main.js dev && npm run package",
     "build-release": "node scripts/build-tool/main.js build && npm run package",
     "build-tool": "node scripts/build-tool/main.js",
-    "package": "npx pkg . && node scripts/postbuild/main.js",
+    "package": "npx pkg . -C && node scripts/postbuild/main.js",
     "lint": "npx eslint src/main.ts",
     "start": "npm run build-tool && node .",
     "start-release": "npm run build-tool build && node .",
