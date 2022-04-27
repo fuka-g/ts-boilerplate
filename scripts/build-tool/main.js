@@ -122,7 +122,6 @@ export function compileFile(basename, projectPath, path, destination, parameters
 	}
 	let fileFolder = destination + "/" + projectPath;
 	fileFolder = fileFolder.substring(0, fileFolder.length - basename.length);
-	console.log(fileFolder);
 	fse.ensureDirSync(fileFolder);
 	fse.writeFileSync(destination + "/" + projectPath, builtFileString);
 	return builtFileString;
