@@ -15,11 +15,6 @@
         "singleInstance": true
       },
       {
-        "name": "🚀 Build Dev",
-        "command": "npm run build-dev",
-        "singleInstance": true
-      },
-      {
         "name": "🚀 Build Release",
         "command": "npm run build-release",
         "singleInstance": true
