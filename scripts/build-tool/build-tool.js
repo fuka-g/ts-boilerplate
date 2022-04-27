@@ -135,7 +135,7 @@ function compileFile(basename, projectPath, path, destination, parameters, obfus
  * @param root The source root folder
  */
 function main(parameters) {
-	const config = JSON.parse(fse.readFileSync("./package.json")).buildConfig;
+	const config = JSON.parse(fse.readFileSync("./build-config.json"));
 	let obfuscate = false;
 	fse.ensureDirSync(config.src);
 	fse.ensureDirSync(config.dest);
@@ -176,8 +176,8 @@ function main(parameters) {
 			readdirp(config.src, { fileFilter: "*.js", alwaysStat: false })
 				// Send the file to compileFile()
 				.on("data", (entry) => {
-					compileFile(entry.basename, entry.path, entry.fullPath, config.dest, parameters, obfuscate, config.obfuscationParameters);
-				})
+				compileFile(entry.basename, entry.path, entry.fullPath, config.dest, parameters, obfuscate, config.obfuscationParameters);
+			})
 				.on("warn", error => console.error("non-fatal error", error))
 				.on("error", error => console.error("fatal error", error));
 		}
