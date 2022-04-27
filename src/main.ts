@@ -1,28 +1,37 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-//import fse from "fs-extra";
-//import hi from "./submodule/submodule.js";
-
-const fse = require("fs-extra");
-
-const submodule = require("./submodule/submodule");
-
-submodule.hi();
-//hi();
-
-const packageJson = JSON.parse(fse.readFileSync("./package.json"));
-
-console.log(`${packageJson.name}-${packageJson.version}`);
-
-//console.log(process.cwd());
-
 //# if dev
-//# define PROJECT_ROOT ./
+//# define PROJECT_ROOT src/
+//# define ASSETS_ROOT assets/
 //# endif dev
 
 //# if build
 //# define PROJECT_ROOT /snapshot/ts-boilerplate/
+//# define ASSETS_ROOT /snapshot/ts-boilerplate/assets/
 //# endif build
 
+/* // ESM
+import readdirp from "readdirp";
+import fse from "fs-extra";
+import hi from "./submodule/submodule.js";
+hi();
+*/
+
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+const readdirp = require("readdirp");
+const fse = require("fs-extra");
+
+const submodule = require("./submodule/submodule");
+submodule.hi();
+
+
+// Reads package.json
+const packageJson = JSON.parse(fse.readFileSync("PROJECT_ROOT../package.json"));
+
+console.log(`${packageJson.name}-${packageJson.version}`);
+//console.log(packageJson);
+
+
+/* // Indicates if we have built the project or not
 //# if dev
 console.log("dev");
 //# endif dev
@@ -30,5 +39,19 @@ console.log("dev");
 //# if build
 console.log("build");
 //# endif build
+*/
 
-console.log("PROJECT_ROOT");
+//console.log("Project root: PROJECT_ROOT");
+
+/* // Reads the project filesystem, ignore if it's a dev build (lots of output)
+//# if build
+readdirp("PROJECT_ROOT../", { alwaysStat: false })
+	.on("data", (entry) => {
+		console.log(entry.fullPath);
+	});
+//# endif build
+*/
+
+/* // Log pacakge.json
+console.log(JSON.parse(fse.readFileSync("PROJECT_ROOTpackage.json")));
+*/
