@@ -1,5 +1,8 @@
-import fse from "fs-extra";
-import fs from "fs";
+/*import fse from "fs-extra";
+import fs from "fs";*/
+
+const fse = require("fs-extra");
+const fs = require("fs");
 
 const packageJson = JSON.parse(fse.readFileSync("./package.json"));
 

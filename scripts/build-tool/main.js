@@ -1,11 +1,15 @@
-import fse from "fs-extra";
+/*import fse from "fs-extra";
 import readdirp from "readdirp";
-import JavaScriptObfuscator from "javascript-obfuscator";
+import JavaScriptObfuscator from "javascript-obfuscator";*/
+
+const fse = require("fs-extra");
+const readdirp = require("readdirp");
+const JavaScriptObfuscator = require("javascript-obfuscator");
 /**
  * compiles a single file
  * @param path The file path
  */
-export function compileFile(basename, projectPath, path, destination, parameters, obfuscate, obfuscationParameters) {
+function compileFile(basename, projectPath, path, destination, parameters, obfuscate, obfuscationParameters) {
 	// Reads the file's content
 	const mainFile = fse.readFileSync(path).toString().split("\n");
 	// The final script that will be written to the destination folder
@@ -130,7 +134,7 @@ export function compileFile(basename, projectPath, path, destination, parameters
  * Main function
  * @param root The source root folder
  */
-export function main(parameters) {
+function main(parameters) {
 	const config = JSON.parse(fse.readFileSync("./package.json")).buildConfig;
 	let obfuscate = false;
 	fse.ensureDirSync(config.src);

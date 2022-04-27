@@ -40,7 +40,6 @@
     "outputPath": "dist"
   },
   "bin": "build-tool-out/main.js",
-  "type": "module",
   "author": "fuka-g",
   "license": "MIT",
   "devDependencies": {
