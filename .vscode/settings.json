@@ -38,6 +38,11 @@
         "name": "⚙️ Build using defaults",
         "command": "npm run build",
         "singleInstance": true
+      },
+      {
+        "name": "⚙️ Preprocess",
+        "command": "npm run build-tool",
+        "singleInstance": true
       }
     ]
   }
