@@ -1,0 +1,54 @@
+{
+    "src": "build-ts/",
+    "dest": "build-tool-out/",
+    "obfuscate": "build",
+    "parameters": [
+        "dev"
+    ],
+    "obfuscationParameters": {
+        "compact": false,
+        "selfDefending": false,
+        "simplify": true,
+        "sourceMap": false,
+        "log": false,
+        "controlFlowFlattening": false,
+        "controlFlowFlatteningThreshold": 0.75,
+        "deadCodeInjection": true,
+        "deadCodeInjectionThreshold": 0.4,
+        "forceTransformStrings": [],
+        "identifierNamesCache": null,
+        "identifierNamesGenerator": "hexadecimal",
+        "identifiersPrefix": "",
+        "ignoreImports": true,
+        "numbersToExpressions": false,
+        "renameGlobals": true,
+        "renameProperties": false,
+        "renamePropertiesMode": "safe",
+        "reservedNames": [],
+        "reservedStrings": [],
+        "sourceMapMode": "inline",
+        "sourceMapSourcesMode": "sources-content",
+        "splitStrings": false,
+        "splitStringsChunkLength": 10,
+        "stringArray": true,
+        "stringArrayCallsTransform": false,
+        "stringArrayCallsTransformThreshold": 0.5,
+        "stringArrayEncoding": [
+            "rc4"
+        ],
+        "stringArrayIndexesType": [
+            "hexadecimal-number"
+        ],
+        "stringArrayIndexShift": true,
+        "stringArrayRotate": true,
+        "stringArrayShuffle": true,
+        "stringArrayWrappersCount": 1,
+        "stringArrayWrappersChainedCalls": false,
+        "stringArrayWrappersParametersMaxCount": 2,
+        "stringArrayWrappersType": "variable",
+        "stringArrayThreshold": 0.75,
+        "target": "node",
+        "transformObjectKeys": true,
+        "unicodeEscapeSequence": false
+    }
+}
