@@ -2,7 +2,7 @@
 
 Boilerplate project including a custom-made preprocessor (`fuka-g/build-tool`), packager (`vercel/pkg`) and linter (`eslint/eslint`).
 
-
+**Projects are currently limited to CJS due to `pkg`'s limitations ([Issue](https://github.com/vercel/pkg/issues/1291) | [PR](https://github.com/vercel/pkg/pull/1323))**
 
 ## Scripts
 
