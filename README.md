@@ -10,10 +10,6 @@ Boilerplate project including a custom-made preprocessor (`fuka-g/build-tool`), 
 
 Build and package using default flags.
 
-### build-dev
-
-Build and package using only the `dev` flag.
-
 ### build-release
 
 Build and package only using the `build` flag.
