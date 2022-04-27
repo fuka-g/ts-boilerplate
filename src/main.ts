@@ -17,12 +17,11 @@ hi();
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const readdirp = require("readdirp");
 const fse = require("fs-extra");
 
 const submodule = require("./submodule/submodule");
-submodule.hi();
 
+submodule.hi();
 
 // Reads package.json
 const packageJson = JSON.parse(fse.readFileSync("PROJECT_ROOT../package.json"));
@@ -45,6 +44,7 @@ console.log("build");
 
 /* // Reads the project filesystem, ignore if it's a dev build (lots of output)
 //# if build
+const readdirp = require("readdirp");
 readdirp("PROJECT_ROOT../", { alwaysStat: false })
 	.on("data", (entry) => {
 		console.log(entry.fullPath);
