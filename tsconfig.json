@@ -7,5 +7,8 @@
         "outDir": "build-ts",
         "watch": true,
         "allowSyntheticDefaultImports": true
-    }
+    },
+    "exclude": [
+        "node_modules"
+    ]
 }
