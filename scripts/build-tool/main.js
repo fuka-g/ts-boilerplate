@@ -5,7 +5,7 @@ import JavaScriptObfuscator from "javascript-obfuscator";
  * compiles a single file
  * @param path The file path
  */
-function compileFile(basename, path, destination, parameters, obfuscate, obfuscationParameters) {
+export function compileFile(basename, projectPath, path, destination, parameters, obfuscate, obfuscationParameters) {
 	// Reads the file's content
 	const mainFile = fse.readFileSync(path).toString().split("\n");
 	// The final script that will be written to the destination folder
@@ -120,7 +120,11 @@ function compileFile(basename, path, destination, parameters, obfuscate, obfusca
 		const obfResult = JavaScriptObfuscator.obfuscate(builtFileString, obfuscationParameters);
 		builtFileString = obfResult.getObfuscatedCode();
 	}
-	fse.writeFileSync(destination + "/" + basename, builtFileString);
+	let fileFolder = destination + "/" + projectPath;
+	fileFolder = fileFolder.substring(0, fileFolder.length - basename.length);
+	console.log(fileFolder);
+	fse.ensureDirSync(fileFolder);
+	fse.writeFileSync(destination + "/" + projectPath, builtFileString);
 	return builtFileString;
 }
 /**
@@ -167,9 +171,9 @@ export function main(parameters) {
 				obfuscate = false;
 			// Recursively read source folder
 			readdirp(config.src, { fileFilter: "*.js", alwaysStat: false })
+				// Send the file to compileFile()
 				.on("data", (entry) => {
-					// Send the file to compileFile()
-					compileFile(entry.basename, entry.fullPath, config.dest, parameters, obfuscate, config.obfuscationParameters);
+					compileFile(entry.basename, entry.path, entry.fullPath, config.dest, parameters, obfuscate, config.obfuscationParameters);
 				})
 				.on("warn", error => console.error("non-fatal error", error))
 				.on("error", error => console.error("fatal error", error));
