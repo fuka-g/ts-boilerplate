@@ -1,6 +1,6 @@
 {
   "name": "ts-boilerplate",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "main": "build-tool-out/main.js",
   "scripts": {
@@ -22,17 +22,20 @@
     "start:0": "npm run prerun",
     "start:1": "npm run build-tool",
     "start:2": "node .",
-    "start-release": "npm-run-all start-release",
-    "start-release:0": "npm run prerun",
-    "start-release:1": "npm run build-tool build",
-    "start-release:2": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm-run-all test:*",
+    "test:1": "npm run prerun",
+    "test:2": "npm run build-tool",
+    "test:3": "jest",
     "tsc": "tsc"
   },
   "pkg": {
     "scripts": "build-tool-out/**/*.js",
-    "assets": [ ],
-    "targets": [ "latest-linux-x64", "latest-win-x64", "latest-macos-x64" ],
+    "assets": [],
+    "targets": [
+      "latest-linux-x64",
+      "latest-win-x64",
+      "latest-macos-x64"
+    ],
     "outputPath": "dist"
   },
   "bin": "build-tool-out/main.js",
@@ -45,6 +48,7 @@
     "eslint": "^8.14.0",
     "fs-extra": "^10.1.0",
     "javascript-obfuscator": "^4.0.0",
+    "jest": "^28.0.2",
     "readdirp": "^3.6.0"
   }
 }

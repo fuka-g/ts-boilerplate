@@ -4,6 +4,11 @@ Boilerplate project including a custom-made preprocessor (`fuka-g/build-tool`), 
 
 **Projects are currently limited to CJS due to `pkg`'s limitations ([Issue](https://github.com/vercel/pkg/issues/1291) | [PR](https://github.com/vercel/pkg/pull/1323))**
 
+## TODO
+
+ - Find a way to exclude package.json (pkg's fault)
+ - Find a way to allow esm imports/exports (pkg's fault)
+
 ## NPM Scripts
 
 ### build

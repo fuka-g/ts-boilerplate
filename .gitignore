@@ -3,3 +3,4 @@ build-tool-out/
 build-ts/
 dist/
 assets/
+coverage/
