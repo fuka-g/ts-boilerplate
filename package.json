@@ -31,8 +31,12 @@
   },
   "pkg": {
     "scripts": "build-tool-out/**/*.js",
-    "assets": [ ],
-    "targets": [ "latest-linux-x64", "latest-win-x64", "latest-macos-x64" ],
+    "assets": [],
+    "targets": [
+      "latest-linux-x64",
+      "latest-win-x64",
+      "latest-macos-x64"
+    ],
     "outputPath": "dist"
   },
   "bin": "build-tool-out/main.js",
