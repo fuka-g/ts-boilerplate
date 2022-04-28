@@ -21,7 +21,7 @@ const fse = require("fs-extra");
 
 const submodule = require("./submodule/submodule");
 
-submodule.hi();
+console.log(submodule.hi()); 
 
 // Reads package.json
 const packageJson = JSON.parse(fse.readFileSync("PROJECT_ROOT../package.json"));
